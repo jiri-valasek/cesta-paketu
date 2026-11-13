@@ -160,6 +160,46 @@ svg.map{display:block;width:100%;min-width:700px;height:auto}
 .done-banner .tick{font-family:var(--f-display);font-weight:700;font-size:17px;flex:none;width:34px;height:34px;border-radius:50%;background:var(--good);color:var(--on-accent);display:grid;place-items:center}
 .done-banner p{margin:0}
 .done-banner strong{font-family:var(--f-display)}
+
+/* ---------- test ---------- */
+.tab:disabled{opacity:.4;cursor:not-allowed}
+.tab:disabled:hover{background:none;color:var(--muted)}
+.fields{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:14px}
+.field{display:flex;flex-direction:column;gap:5px;flex:1 1 220px;min-width:0}
+.field label{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.field input{font:inherit;padding:9px 11px;border:1px solid var(--line);border-radius:9px;background:var(--bg);color:var(--fg);min-width:0;width:100%}
+.rules{margin:0 0 14px;padding-left:20px;color:var(--muted);max-width:64ch}
+.rules li{margin-bottom:4px}
+.t-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:baseline;margin-bottom:6px}
+.t-head h2{margin:0}
+.t-meta{font-family:var(--f-mono);font-size:13px;color:var(--muted)}
+.t-q{font-family:var(--f-display);font-weight:600;font-size:18px;background:var(--amber-soft);border-radius:10px;padding:12px 14px;margin:0 0 14px;text-wrap:balance}
+.node.good .ic{stroke:var(--good)}
+.node.good .ic-detail{stroke:var(--good)}
+.node.good .ic-port{fill:var(--good)}
+.msg{border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:14px}
+.seg{display:block;width:100%;text-align:left;font:inherit;color:var(--fg);background:var(--surface);border:0;border-left:6px solid transparent;border-bottom:1px solid var(--line);padding:10px 13px;cursor:pointer;overflow-wrap:anywhere}
+.seg:last-child{border-bottom:0}
+.seg:hover:not(:disabled){background:var(--surface-2)}
+.seg:disabled{cursor:default}
+.seg.pick{border-left-color:var(--amber);background:var(--amber-soft)}
+.seg.is-warn{border-left-color:var(--bad)}
+.seg.is-miss{border-left-color:var(--muted)}
+.seg small{display:block;font-size:14px;margin-top:3px;color:var(--muted)}
+.seg.is-warn small{color:var(--bad)}
+.result{border:2px solid var(--fg);border-radius:14px;padding:18px 20px;background:var(--surface);max-width:560px;display:flex;flex-direction:column;gap:12px}
+.result .eyebrow{color:var(--muted)}
+.res-name{font-family:var(--f-display);font-weight:700;font-size:24px;margin:0;line-height:1.15;overflow-wrap:anywhere}
+.res-sub{font-family:var(--f-mono);font-size:13px;color:var(--muted);margin:0}
+.res-rows{display:grid;grid-template-columns:1fr auto;gap:4px 16px;font-size:15.5px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-block:10px;font-variant-numeric:tabular-nums}
+.res-rows b{font-family:var(--f-mono);font-weight:600}
+.res-foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:10px}
+.res-total{font-family:var(--f-display);font-weight:700;font-size:38px;line-height:1;font-variant-numeric:tabular-nums}
+.res-total small{font-size:18px;color:var(--muted);font-weight:600}
+.res-code{font-family:var(--f-mono);font-size:13px;color:var(--muted);text-align:right}
+.res-code b{display:block;font-size:17px;letter-spacing:.14em;color:var(--fg)}
+.howto{margin:0;max-width:64ch}
+kbd{font-family:var(--f-mono);font-size:13px;border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:1px 6px;background:var(--surface)}
 </style>
 
 <div class="wrap">
@@ -179,6 +219,7 @@ svg.map{display:block;width:100%;min-width:700px;height:auto}
     <button class="tab" role="tab" id="tab-map" aria-controls="p-map" aria-selected="true">1 · Mapa sítě</button>
     <button class="tab" role="tab" id="tab-url" aria-controls="p-url" aria-selected="false">2 · Adresa</button>
     <button class="tab" role="tab" id="tab-load" aria-controls="p-load" aria-selected="false">3 · Načtení stránky</button>
+    <button class="tab" role="tab" id="tab-test" aria-controls="p-test" aria-selected="false">Test</button>
   </div>
 
   <!-- ====== STANICE 1 ====== -->
@@ -246,6 +287,56 @@ svg.map{display:block;width:100%;min-width:700px;height:auto}
     </div>
   </section>
 
+  <!-- ====== TEST ====== -->
+  <section class="panel" id="p-test" role="tabpanel" aria-labelledby="tab-test" hidden>
+
+    <div class="card" id="test-start">
+      <h2>Test: Internet</h2>
+      <p class="task">Pět praktických úkolů, dohromady 20 bodů. Na konci dostaneš kartu s výsledkem — tu vyfotíš a odevzdáš v Teams.</p>
+      <ul class="rules">
+        <li>U většiny úkolů se počítá <strong>první kliknutí</strong>. Nejdřív přemýšlej, potom klikej.</li>
+        <li>Během testu jsou ostatní záložky zamčené.</li>
+        <li>Stránku během testu neobnovuj, přišel bys o rozdělanou práci.</li>
+      </ul>
+      <div class="fields">
+        <div class="field"><label for="t-name">Jméno a příjmení</label><input id="t-name" type="text" autocomplete="off" maxlength="40"></div>
+        <div class="field" style="flex:0 1 130px"><label for="t-class">Třída</label><input id="t-class" type="text" autocomplete="off" maxlength="6" placeholder="6.A"></div>
+      </div>
+      <div class="row"><button class="btn primary" id="t-start">Spustit test</button></div>
+      <div class="status" id="t-start-status" style="margin-top:12px;min-height:0" hidden></div>
+    </div>
+
+    <div class="card" id="test-task" hidden>
+      <div class="t-head"><h2 id="t-title"></h2><span class="t-meta" id="t-meta"></span></div>
+      <p class="task" id="t-desc"></p>
+      <p class="t-q" id="t-q" hidden></p>
+      <div class="mapbox" id="t-mapbox" style="margin-bottom:14px" hidden><svg class="map" id="t-map" viewBox="0 0 900 520" role="img" aria-label="Mapa sítě pro test"></svg></div>
+      <div class="urlline" id="t-url" hidden></div>
+      <div class="msg" id="t-msg" hidden></div>
+      <div class="status" id="t-status"></div>
+      <div class="row" id="t-actions" style="margin-top:12px"></div>
+    </div>
+
+    <div class="panel" id="test-result" hidden>
+      <div class="result" id="res-card">
+        <div class="eyebrow">Cesta paketu · test Internet</div>
+        <p class="res-name" id="res-name"></p>
+        <p class="res-sub" id="res-sub"></p>
+        <div class="res-rows" id="res-rows"></div>
+        <div class="res-foot">
+          <div class="res-total"><span id="res-total"></span><small> / 20 b</small></div>
+          <div class="res-code">kontrolní kód<b id="res-code"></b></div>
+        </div>
+      </div>
+      <div class="row" id="dl-row" hidden><button class="btn primary" id="t-dl">Stáhnout obrázek</button></div>
+      <div class="status" id="dl-status" style="min-height:0" hidden></div>
+      <p class="howto" id="howto-dl" hidden><strong>Jak odevzdat:</strong> klikni na Stáhnout obrázek, potvrď uložení a stažený soubor nahraj do zadání v Teams.</p>
+      <p class="howto"><strong id="shot-lead">Jak odevzdat:</strong> zmáčkni <kbd>Win</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd>, tažením myši označ celou kartu s výsledkem a obrázek vlož (<kbd>Ctrl</kbd> + <kbd>V</kbd>) do zadání v Teams.</p>
+      <div class="row"><button class="btn ghost" id="t-again">Zkusit test znovu</button></div>
+    </div>
+
+  </section>
+
 </div>
 
 <script>
@@ -254,7 +345,7 @@ svg.map{display:block;width:100%;min-width:700px;height:auto}
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ================= záložky ================= */
-  var tabs = [["tab-map","p-map"],["tab-url","p-url"],["tab-load","p-load"]];
+  var tabs = [["tab-map","p-map"],["tab-url","p-url"],["tab-load","p-load"],["tab-test","p-test"]];
   tabs.forEach(function(pair){
     document.getElementById(pair[0]).addEventListener("click", function(){
       tabs.forEach(function(p){
@@ -701,6 +792,467 @@ svg.map{display:block;width:100%;min-width:700px;height:auto}
   }
   document.getElementById("load-reset").addEventListener("click", renderSteps);
   renderSteps();
+
+  /* ================= TEST ================= */
+  function byId(id){ return document.getElementById(id); }
+  var TNAMES = ["Poznej zařízení","Naklikej cestu","Odřízni server","Rozeber adresu","Najdi varovné znaky"];
+  var T = {name:"", cls:"", scores:[0,0,0,0,0], step:-1, attempt:0};
+  var TEST_SUB = {r1:"škola", nix:"Praha"};
+  var tSvg = byId("t-map");
+  var tm = {broken:{}, marks:{}, path:[], onClick:null};
+
+  function tDraw(){
+    while(tSvg.firstChild) tSvg.removeChild(tSvg.firstChild);
+    var live = {};
+    tm.path.forEach(function(id,i){ if(i > 0){ live[tm.path[i-1]+"-"+id] = true; live[id+"-"+tm.path[i-1]] = true; } });
+    EDGES.forEach(function(e){
+      var a = NODES[e[0]], b = NODES[e[1]], cls = "edge";
+      if(tm.broken[e[0]] || tm.broken[e[1]]) cls = "edge dead";
+      else if(live[e[0]+"-"+e[1]]) cls = "edge live";
+      tSvg.appendChild(el("line",{x1:a.x,y1:a.y,x2:b.x,y2:b.y,class:cls}));
+    });
+    Object.keys(NODES).forEach(function(id){
+      var n = NODES[id], s = SIZE[n.kind];
+      var cls = "node" + (tm.broken[id] ? " broken" : "") + (tm.marks[id] ? " " + tm.marks[id] : "");
+      var g = el("g",{class:cls});
+      g.dataset.node = id;
+      icon(g, n);
+      if(tm.broken[id]) g.appendChild(txt(n.x+s.w/2-4, n.y-s.h/2+6, "n-x", "×"));
+      g.appendChild(txt(n.x, n.y + s.h/2 + 16, "n-label", n.label));
+      g.appendChild(txt(n.x, n.y + s.h/2 + 30, "n-sub", TEST_SUB[id] || n.sub));
+      g.appendChild(el("rect",{x:n.x-s.w/2-9,y:n.y-s.h/2-9,width:s.w+18,height:s.h+42,fill:"transparent"}));
+      tSvg.appendChild(g);
+    });
+  }
+  tSvg.addEventListener("click", function(ev){
+    var g = ev.target.closest ? ev.target.closest("[data-node]") : null;
+    if(g && tm.onClick) tm.onClick(g.dataset.node);
+  });
+
+  function tReach(to, brokenMap){
+    if(brokenMap.pc || brokenMap[to]) return false;
+    var seen = {pc:true}, queue = ["pc"];
+    while(queue.length){
+      var cur = queue.shift();
+      if(cur === to) return true;
+      EDGES.forEach(function(e){
+        var nb = e[0] === cur ? e[1] : (e[1] === cur ? e[0] : null);
+        if(nb && !seen[nb] && !brokenMap[nb]){ seen[nb] = true; queue.push(nb); }
+      });
+    }
+    return false;
+  }
+  function linked(a, b){
+    return EDGES.some(function(e){ return (e[0] === a && e[1] === b) || (e[0] === b && e[1] === a); });
+  }
+
+  function tSetup(desc, show){
+    byId("t-title").textContent = "Úkol " + (T.step + 1) + " z 5 · " + TNAMES[T.step];
+    var sum = 0; for(var i = 0; i < T.step; i++) sum += T.scores[i];
+    byId("t-meta").textContent = "zatím " + sum + " b";
+    byId("t-desc").innerHTML = desc;
+    byId("t-q").hidden = !show.q;
+    byId("t-mapbox").hidden = !show.map;
+    byId("t-url").hidden = !show.url;
+    byId("t-msg").hidden = !show.msg;
+    tActions([]);
+  }
+  function tStatus(html, cls){
+    var s = byId("t-status");
+    s.className = "status" + (cls ? " " + cls : "");
+    s.innerHTML = html;
+  }
+  function tActions(list){
+    var box = byId("t-actions");
+    box.innerHTML = "";
+    list.forEach(function(a){
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "btn" + (a.primary ? " primary" : " ghost");
+      b.textContent = a.label;
+      b.addEventListener("click", a.fn);
+      box.appendChild(b);
+    });
+  }
+  function tFinish(points, html, cls){
+    T.scores[T.step] = points;
+    tm.onClick = null;
+    tStatus(html + "<br>Za tenhle úkol máš <b>" + points + " ze 4 bodů</b>.", cls);
+    tActions([{label: T.step < 4 ? "Další úkol" : "Zobrazit výsledek", primary:true, fn:tNext}]);
+  }
+  function pickOne(arr){ return arr[Math.floor(Math.random() * arr.length)]; }
+
+  /* --- úkol 1: poznej zařízení --- */
+  var IDQ = [
+    {d:"Rozvádí data uvnitř školní sítě. Pozná, kterému počítači data patří, a pošle je jen jemu.", ids:["sw"]},
+    {d:"Brána mezi školní sítí a internetem. Všechno, co jde ze školy ven, musí projít přes něj.", ids:["r1"]},
+    {d:"Místo, kde si čeští poskytovatelé internetu předávají data mezi sebou.", ids:["nix"]},
+    {d:"Běží 24 hodin denně, čeká na požadavky a posílá zpátky data stránky.", ids:["s1","s2","s3"]},
+    {d:"Koncové zařízení. Odešle požadavek a nakonec zobrazí, co přijde zpátky.", ids:["pc"]},
+    {d:"Páteřní zařízení v zahraničí. Přeposílá data mezi státy.", ids:["fra","ams"]},
+    {d:"Patří firmě, která škole prodává internet. Sbírá data od škol, firem a domácností v okolí.", ids:["p1","p2"]}
+  ];
+  function task1(){
+    var pool = shuffle(IDQ).slice(0,4), i = 0, pts = 0;
+    tSetup("Přečti si popis a klikni v mapě na zařízení, které vystihuje. <strong>Počítá se první kliknutí.</strong>", {q:true, map:true});
+    function ask(){
+      tm = {broken:{}, marks:{}, path:[], onClick:pick};
+      tDraw();
+      byId("t-q").textContent = "„" + pool[i].d + "“";
+      tStatus("Otázka " + (i + 1) + " ze 4.", "");
+      tActions([]);
+    }
+    function pick(id){
+      tm.onClick = null;
+      var q = pool[i], ok = q.ids.indexOf(id) >= 0;
+      if(ok){ pts++; tm.marks[id] = "good"; }
+      else{ tm.marks[id] = "broken"; q.ids.forEach(function(x){ tm.marks[x] = "good"; }); }
+      tDraw();
+      i++;
+      var msg = ok ? "Správně." : "Tohle ne. Správné zařízení je vyznačené zeleně.";
+      if(i < 4){
+        tStatus(msg, ok ? "ok" : "err");
+        tActions([{label:"Další otázka", primary:true, fn:ask}]);
+      }else{
+        tFinish(pts, msg, ok ? "ok" : "err");
+      }
+    }
+    ask();
+  }
+
+  /* --- úkol 2: naklikej cestu --- */
+  function task2(){
+    var sc = pickOne([{b:"p1",t:"s2"},{b:"nix",t:"s3"},{b:"p2",t:"s3"},{b:"nix",t:"s2"},{b:"fra",t:"s3"}]);
+    var errors = 0, target = NODES[sc.t].label;
+    tSetup("Zařízení s křížkem je mimo provoz. Naklikej cestu, kudy se data dostanou z počítače až na server: klikej na zařízení <strong>jedno po druhém</strong>, tak jak jdou za sebou. Každé chybné kliknutí stojí bod.", {q:true, map:true});
+    byId("t-q").textContent = "Cíl cesty: " + target;
+    tm = {broken:{}, marks:{pc:"good"}, path:["pc"], onClick:step};
+    tm.broken[sc.b] = true;
+    tDraw();
+    tStatus("Začínáš na počítači. Kam data půjdou jako první?", "");
+    tActions([{label:"Krok zpět", fn:back}]);
+    function note(){ return errors ? " Chyb zatím: " + errors + "." : ""; }
+    function back(){
+      if(tm.path.length < 2 || !tm.onClick) return;
+      delete tm.marks[tm.path.pop()];
+      tDraw();
+      tStatus("Vrátil ses o krok zpět." + note(), "");
+    }
+    function step(id){
+      var last = tm.path[tm.path.length - 1];
+      if(tm.path.indexOf(id) >= 0){ tStatus("Tudy už data šla. Vyber další zařízení, nebo použij Krok zpět." + note(), ""); return; }
+      var why = null;
+      if(tm.broken[id]) why = "Tohle zařízení je mimo provoz, tudy to nejde.";
+      else if(!linked(last, id)) why = "Mezi těmito dvěma zařízeními nevede žádná linka.";
+      else if(NODES[id].kind === "server" && id !== sc.t) why = "To je jiný server, než jaký máš za cíl.";
+      if(why){ errors++; tStatus(why + note(), "err"); return; }
+      tm.path.push(id); tm.marks[id] = "good";
+      tDraw();
+      if(id === sc.t){
+        tFinish(Math.max(0, 4 - errors), "Data dorazila na " + target + ". Chybných kliknutí: " + errors + ".", "ok");
+      }else{
+        tStatus("Dobře, pokračuj dál." + note(), "");
+      }
+    }
+  }
+
+  /* --- úkol 3: odřízni server --- */
+  function task3(){
+    var servers = ["s1","s2","s3"], target = pickOne(servers), checks = 0;
+    var tl = NODES[target].label;
+    tSetup("Kliknutím vyřazuj zařízení z provozu (druhé kliknutí je zase opraví). Až budeš mít hotovo, dej Zkontrolovat. Máš <strong>3 kontroly</strong>: první je za 4 body, druhá za 3, třetí za 2.", {q:true, map:true});
+    byId("t-q").textContent = "Odřízni server " + tl + " tak, aby se na něj data nedostala. Oba zbylé servery ale musí fungovat dál.";
+    tm = {broken:{}, marks:{}, path:[], onClick:toggle};
+    tDraw();
+    tStatus("Zatím je všechno v provozu.", "");
+    tActions([{label:"Zkontrolovat", primary:true, fn:check}]);
+    function toggle(id){
+      if(!NODES[id].breakable){ tStatus("Tohle zařízení vyřadit nejde.", ""); return; }
+      if(tm.broken[id]) delete tm.broken[id]; else tm.broken[id] = true;
+      tDraw();
+      tStatus("Vyřazených zařízení: " + Object.keys(tm.broken).length + ".", "");
+    }
+    function check(){
+      if(!tm.onClick) return;
+      checks++;
+      var cut = !tReach(target, tm.broken);
+      var down = servers.filter(function(sv){ return sv !== target && !tReach(sv, tm.broken); });
+      if(cut && !down.length){
+        tFinish([4,3,2][checks - 1], "Přesně tak. Na " + tl + " se data nedostanou a ostatní servery běží dál.", "ok");
+        return;
+      }
+      var msg = !cut ? "Na " + tl + " se data pořád dostanou jinou cestou."
+                     : tl + " je odříznutý, ale nefunguje ani " + down.map(function(x){ return NODES[x].label; }).join(" a ") + ". To být nesmí.";
+      if(checks >= 3) tFinish(0, msg + " Kontroly jsi vyčerpal.", "err");
+      else tStatus(msg + " Zbývá kontrol: " + (3 - checks) + ".", "err");
+    }
+  }
+
+  /* --- úkol 4: rozeber adresu --- */
+  var TURLS = [
+    ["https://","www.idos.cz","/vlaky/spojeni"],
+    ["https://","mapy.cz","/turisticka"],
+    ["https://","www.csfd.cz","/zebricky/filmy"],
+    ["http://","info.cern.ch","/hypertext/WWW/TheProject.html"],
+    ["https://","www.chmi.cz","/predpovedi"],
+    ["https://","cs.wikipedia.org","/wiki/Router"]
+  ];
+  var KINDS = ["protokol","doménu","cestu"], KIND_NOM = ["protokol","doména","cesta"];
+  function task4(){
+    var urls = shuffle(TURLS).slice(0,4);
+    var asks = shuffle([0,1,2]); asks.push(pickOne([1,2])); asks = shuffle(asks);
+    var i = 0, pts = 0, box = byId("t-url"), locked = false;
+    tSetup("Klikni v adrese na tu část, na kterou se appka ptá. <strong>Počítá se první kliknutí.</strong>", {q:true, url:true});
+    function ask(){
+      locked = false;
+      box.innerHTML = "";
+      urls[i].forEach(function(part, k){
+        var b = document.createElement("button");
+        b.type = "button"; b.className = "chunk"; b.textContent = part;
+        b.addEventListener("click", function(){ pick(k, b); });
+        box.appendChild(b);
+      });
+      byId("t-q").textContent = "Klikni na " + KINDS[asks[i]] + ".";
+      tStatus("Adresa " + (i + 1) + " ze 4.", "");
+      tActions([]);
+    }
+    function pick(k, btn){
+      if(locked) return;
+      locked = true;
+      var ok = (k === asks[i]);
+      if(ok) pts++; else btn.classList.add("miss");
+      box.children[asks[i]].classList.add("done");
+      var msg = ok ? "Správně." : "Tohle je " + KIND_NOM[k] + ". Správná část je vyznačená zeleně.";
+      i++;
+      if(i < 4){
+        tStatus(msg, ok ? "ok" : "err");
+        tActions([{label:"Další adresa", primary:true, fn:ask}]);
+      }else{
+        tFinish(pts, msg, ok ? "ok" : "err");
+      }
+    }
+    ask();
+  }
+
+  /* --- úkol 5: varovné znaky --- */
+  var MSGS = [
+    [
+      {t:"Od: Správce účtů <podpora@skolni-ucet-overeni.xyz>", w:"Podivná adresa odesílatele. Škola by psala ze své vlastní domény."},
+      {t:"Předmět: Školní účet"},
+      {t:"Ahoj,"},
+      {t:"posíláme ti informace ke tvému školnímu účtu."},
+      {t:"Pokud do 30 minut nepotvrdíš své údaje, účet nenávratně smažeme.", w:"Nátlak a spěch. Podvodník chce, abys neměl čas přemýšlet."},
+      {t:"Klikni sem: http://skolni-ucet.overeni-hesla.xyz/prihlaseni", w:"Podezřelý odkaz. Adresa nepatří škole a nezačíná na https."},
+      {t:"Na stránce zadej své heslo, ať ho můžeme ověřit.", w:"Heslo po tobě nikdo poctivý nikdy nechce."},
+      {t:"S pozdravem, tým podpory"}
+    ],
+    [
+      {t:"Od: Soutěž o mobil <vyhra@darky-zdarma-hned.top>", w:"Podivná adresa odesílatele, kterého vůbec neznáš."},
+      {t:"Předmět: Zpráva pro tebe"},
+      {t:"Ahoj!"},
+      {t:"Byl jsi vylosován a vyhráváš nový mobil.", w:"Výhra v soutěži, do které ses nikdy nepřihlásil. Příliš dobré, aby to byla pravda."},
+      {t:"Mobil ti pošleme poštou."},
+      {t:"Vyzvedni si ho tady: http://mobil-zdarma.darky-hned.top/vyhra", w:"Podezřelý odkaz na neznámou adresu, navíc bez https."},
+      {t:"Kvůli poštovnému 1 Kč vyplň číslo platební karty rodičů.", w:"Chce údaje z platební karty. Tak se kradou peníze."},
+      {t:"Hezký den, tým soutěže"}
+    ]
+  ];
+  function task5(){
+    var segs = pickOne(MSGS), box = byId("t-msg"), picked = {}, doneFlag = false;
+    tSetup("Přišla ti tahle zpráva. Je podvodná a jsou v ní <strong>4 varovné znaky</strong>. Klikáním označ 4 řádky, které ti připadají podezřelé, a dej Odevzdat. Za každý správně označený je bod.<br><strong>Nápověda:</strong> hledej podivnou adresu odesílatele, podezřelý odkaz, nátlak nebo nečekanou výhru a žádost o heslo či číslo karty.", {msg:true});
+    box.innerHTML = "";
+    segs.forEach(function(sg, k){
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "seg"; b.textContent = sg.t;
+      b.setAttribute("aria-pressed","false");
+      b.addEventListener("click", function(){
+        if(doneFlag) return;
+        if(!picked[k] && nPicked() >= 4){
+          tStatus("Označit můžeš nejvýš 4 řádky. Jestli chceš tenhle, nejdřív jiný odznač.", "err");
+          return;
+        }
+        picked[k] = !picked[k];
+        b.classList.toggle("pick", !!picked[k]);
+        b.setAttribute("aria-pressed", picked[k] ? "true" : "false");
+        count();
+      });
+      box.appendChild(b);
+    });
+    function nPicked(){ return Object.keys(picked).filter(function(k){ return picked[k]; }).length; }
+    function count(){ tStatus("Označeno: " + nPicked() + " ze 4.", ""); }
+    count();
+    tActions([{label:"Odevzdat", primary:true, fn:submit}]);
+    function submit(){
+      if(doneFlag) return;
+      doneFlag = true;
+      var good = 0, bad = 0;
+      segs.forEach(function(sg, k){
+        var b = box.children[k];
+        b.disabled = true;
+        if(sg.w){
+          b.classList.add("is-warn");
+          var sm = document.createElement("small");
+          sm.textContent = (picked[k] ? "Správně označeno. " : "Tohle ti uteklo. ") + sg.w;
+          b.appendChild(sm);
+          if(picked[k]) good++;
+        }else if(picked[k]){
+          bad++;
+          b.classList.add("is-miss");
+          var sm2 = document.createElement("small");
+          sm2.textContent = "Tohle varovný znak není.";
+          b.appendChild(sm2);
+        }
+      });
+      tFinish(good, "Našel jsi " + good + " ze 4 varovných znaků.", good >= 3 ? "ok" : "err");
+    }
+  }
+
+  var TASKS = [task1, task2, task3, task4, task5];
+  function lockTabs(on){
+    ["tab-map","tab-url","tab-load"].forEach(function(id){ byId(id).disabled = on; });
+  }
+  function tNext(){
+    T.step++;
+    if(T.step >= TASKS.length){ showResult(); return; }
+    TASKS[T.step]();
+    byId("test-task").scrollIntoView({block:"start", behavior: reduce ? "auto" : "smooth"});
+  }
+  function two(n){ return (n < 10 ? "0" : "") + n; }
+  function code(str){
+    var h = 5381;
+    for(var i = 0; i < str.length; i++){ h = ((h * 33) ^ str.charCodeAt(i)) >>> 0; }
+    var c = ("000000" + h.toString(36).toUpperCase()).slice(-6);
+    return c.slice(0,3) + "-" + c.slice(3);
+  }
+  function showResult(){
+    lockTabs(false);
+    byId("test-task").hidden = true;
+    byId("test-result").hidden = false;
+    var d = new Date();
+    var when = d.getDate() + ". " + (d.getMonth() + 1) + ". " + d.getFullYear() + " " + two(d.getHours()) + ":" + two(d.getMinutes());
+    var total = T.scores.reduce(function(a, b){ return a + b; }, 0);
+    byId("res-name").textContent = T.name;
+    byId("res-sub").textContent = T.cls + " · " + when + " · pokus č. " + T.attempt;
+    var rows = byId("res-rows");
+    rows.innerHTML = "";
+    TNAMES.forEach(function(nm, i){
+      var a = document.createElement("span"); a.textContent = (i + 1) + ". " + nm;
+      var b = document.createElement("b"); b.textContent = T.scores[i] + " / 4";
+      rows.appendChild(a); rows.appendChild(b);
+    });
+    byId("res-total").textContent = total;
+    var cd = code([T.name, T.cls, T.scores.join(""), T.attempt, when, "paket-6r"].join("|"));
+    byId("res-code").textContent = cd;
+    RES = {name:T.name, sub:T.cls + " · " + when + " · pokus č. " + T.attempt, scores:T.scores.slice(), total:total, code:cd};
+    byId("dl-status").hidden = true;
+    byId("test-result").scrollIntoView({block:"start", behavior: reduce ? "auto" : "smooth"});
+  }
+  byId("t-start").addEventListener("click", function(){
+    var name = byId("t-name").value.trim(), cls = byId("t-class").value.trim();
+    var st = byId("t-start-status");
+    if(name.length < 5 || name.indexOf(" ") < 0 || !cls){
+      st.hidden = false; st.className = "status err";
+      st.textContent = "Vyplň celé jméno a příjmení i třídu. Bez nich nepůjde výsledek odevzdat.";
+      return;
+    }
+    st.hidden = true;
+    var n = 0;
+    try{ n = parseInt(window.localStorage.getItem("cesta-paketu-pokusy") || "0", 10) || 0; }catch(e){}
+    n++;
+    try{ window.localStorage.setItem("cesta-paketu-pokusy", String(n)); }catch(e){}
+    T = {name:name, cls:cls, scores:[0,0,0,0,0], step:-1, attempt:n};
+    lockTabs(true);
+    byId("test-start").hidden = true;
+    byId("test-result").hidden = true;
+    byId("test-task").hidden = false;
+    tNext();
+  });
+  /* --- výsledek jako obrázek --- */
+  var RES = null, DL = null;
+  function cardCanvas(r){
+    var W = 600, H = 400, k = 2;
+    var c = document.createElement("canvas");
+    c.width = W * k; c.height = H * k;
+    var g = c.getContext("2d");
+    g.scale(k, k);
+    var INK = "#10212b", MUT = "#566a76", LINE = "#cbd8dc";
+    var DISP = '"Chivo","Segoe UI",system-ui,sans-serif';
+    var BODY = '"Source Sans 3","Segoe UI",system-ui,sans-serif';
+    var MONO = '"JetBrains Mono",Consolas,monospace';
+    g.fillStyle = "#ffffff"; g.fillRect(0, 0, W, H);
+    g.strokeStyle = INK; g.lineWidth = 2; g.strokeRect(11, 11, W - 22, H - 22);
+    var L = 34, R = W - 34;
+    g.textBaseline = "alphabetic";
+    g.fillStyle = MUT; g.font = "600 12px " + MONO;
+    g.fillText("CESTA PAKETU  ·  TEST INTERNET", L, 46);
+    var size = 28;
+    g.fillStyle = INK;
+    do{ g.font = "700 " + size + "px " + DISP; size--; }while(g.measureText(r.name).width > R - L && size > 14);
+    g.fillText(r.name, L, 84);
+    g.fillStyle = MUT; g.font = "400 13px " + MONO;
+    g.fillText(r.sub, L, 108);
+    function rule(y){ g.strokeStyle = LINE; g.lineWidth = 1; g.beginPath(); g.moveTo(L, y); g.lineTo(R, y); g.stroke(); }
+    rule(126);
+    TNAMES.forEach(function(nm, i){
+      var y = 154 + i * 27;
+      g.fillStyle = INK; g.textAlign = "left"; g.font = "400 16px " + BODY;
+      g.fillText((i + 1) + ". " + nm, L, y);
+      g.textAlign = "right"; g.font = "600 15px " + MONO;
+      g.fillText(r.scores[i] + " / 4", R, y);
+    });
+    rule(282);
+    g.textAlign = "left"; g.fillStyle = INK; g.font = "700 46px " + DISP;
+    var t = String(r.total);
+    g.fillText(t, L, 348);
+    var tw = g.measureText(t).width;
+    g.fillStyle = MUT; g.font = "600 19px " + DISP;
+    g.fillText(" / 20 b", L + tw + 2, 348);
+    g.textAlign = "right"; g.font = "400 12px " + MONO;
+    g.fillText("kontrolní kód", R, 322);
+    g.fillStyle = INK; g.font = "600 19px " + MONO;
+    g.fillText(r.code, R, 348);
+    return c;
+  }
+  function slug(str){
+    var out = str.toLowerCase();
+    if(out.normalize) out = out.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    return out.replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "zak";
+  }
+  function dlStatus(text, cls){
+    var s = byId("dl-status");
+    s.hidden = false; s.className = "status" + (cls ? " " + cls : ""); s.textContent = text;
+  }
+  if(window.claude && typeof window.claude.use === "function"){
+    window.claude.use("downloads").then(function(ns){
+      if(!ns) return;
+      DL = ns;
+      byId("dl-row").hidden = false;
+      byId("howto-dl").hidden = false;
+      byId("shot-lead").textContent = "Kdyby stahování nešlo:";
+    }).catch(function(){});
+  }
+  byId("t-dl").addEventListener("click", function(){
+    if(!DL || !RES) return;
+    var btn = byId("t-dl");
+    btn.disabled = true;
+    cardCanvas(RES).toBlob(function(blob){
+      if(!blob){ btn.disabled = false; dlStatus("Obrázek se nepodařilo vytvořit. Použij výstřižek podle návodu níž.", "err"); return; }
+      DL.save({filename:"test-internet-" + slug(RES.name) + ".png", data:blob}).then(function(){
+        btn.disabled = false;
+        dlStatus("Obrázek je uložený. Najdeš ho ve složce Stažené soubory, odtud ho nahraj do zadání v Teams.", "ok");
+      }).catch(function(err){
+        btn.disabled = false;
+        var codeName = err && err.code;
+        if(codeName === "declined") dlStatus("Uložení nebylo potvrzeno. Klikni na Stáhnout obrázek znovu a uložení potvrď.", "err");
+        else if(codeName === "rate_limited") dlStatus("Chvilku počkej a zkus to znovu.", "err");
+        else dlStatus("Stažení se tady nepovedlo. Použij výstřižek podle návodu níž.", "err");
+      });
+    }, "image/png");
+  });
+  byId("t-again").addEventListener("click", function(){
+    byId("test-result").hidden = true;
+    byId("test-start").hidden = false;
+  });
 })();
 </script>
 
